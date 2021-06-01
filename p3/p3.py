@@ -1,8 +1,11 @@
 # importando as bibliotecas necessarias
+from logging import info
+import re
 import flask
 from flask.json import request, jsonify
 import requests
 import json
+import datetime #para data
 
 # instanciando a aplicacao para rodar a API
 app = flask.Flask(__name__)
@@ -52,7 +55,42 @@ def api_recipe():
   }]
   return jsonify(resultado) # transformo o objeto em json e o retornando
 
+# agora para o ultimo exercicio:
 
+@app.route('/age', methods=['POST'])
+def api_age():
+
+
+  if not ('name' and 'birthdate' and 'date') in request.json:
+    return "Por favor insira os dados conforme a seguinte estrutura: { name: “Nome Sobrenome”, birthdate: yyyy-mm-dd, date: YYYY-MM-DD}"
+  # else:
+  #   # valida_data(request.json['birthdate'])
+  #   d1 = valida_data(request.json['date'])
+  #   print(d1)
+ 
+  try:
+    nasce = datetime.datetime.strptime(request.json['birthdate'], "%Y-%m-%d")
+    data = datetime.datetime.strptime(request.json['date'], "%Y-%m-%d")
+  except:
+    return ('Por favor insira as datas no formato "yyyy-mm-dd"')
+  
+  if data < nasce:
+    return "Por favor insira uma data posterior ao seu nascimento"
+  elif data < datetime.datetime.today():
+    return (data - nasce)
+
+
+  
+
+
+
+  info = {
+    'name': request.json['name'] + "opop",
+    'birthdate': request.json['birthdate'],
+    'date': request.json['date']
+  }
+
+  #return jsonify(b>a)
 
 # iniciando a aplicação...
 app.run()
