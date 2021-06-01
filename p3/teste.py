@@ -1,11 +1,11 @@
 # realizando testes para ver o funcionamento do metodo age
 import requests
 
-r1 = requests.get('http://127.0.0.1:5000/hello')
-print (r1.text)
+r1 = requests.get('http://127.0.0.1:5000/hello') # vendo o que me retorna da api /hello
+print (r1.text) # checando o resultado
 
-r2 = requests.get('http://127.0.0.1:5000/recipe?i=chocolate&q=cake')
-print (r2.text)
+r2 = requests.get('http://127.0.0.1:5000/recipe?i=chocolate&q=cake') # vendo o que me retorna da api /recipe com ingrediente e query genericos
+print (r2.text) # checando o resultado
 
 # o que eu vou passar no post:
 dados ={
