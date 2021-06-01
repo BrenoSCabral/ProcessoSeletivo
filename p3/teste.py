@@ -4,9 +4,9 @@ import requests
 
 # o que eu vou passar no post:
 dados ={
-  "name": "Breno Cabral",
-  "birthdate": '2000-07-07',
-  "date":'0200-09-20'
+  'name': 'Breno Cabral',
+  'date': '2021-07-07',
+  'birthdate': '2021-07-07'
 }
 
 r = requests.post('http://127.0.0.1:5000/age', json=dados) # passando
